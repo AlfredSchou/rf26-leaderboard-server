@@ -1,10 +1,11 @@
 "use client";
 
+import prisma from "@/lib/prisma";
 import { useSearchParams } from "next/navigation";
 import { useState, Suspense } from "react";
 
 
-export function LeaderboardPage() {
+export function SubmitPage() {
   const params = useSearchParams();
   const score = params.get("score");
   const sig = params.get("sig");
@@ -29,10 +30,13 @@ export function LeaderboardPage() {
   );
 }
 
-export default function Page() {
+export default async function Page() {
+    const score = await prisma.score.findFirst({
+        orderBy: { score: "desc" },
+    });
     return(
         <Suspense fallback={<div>Loading...</div>}>
-            <LeaderboardPage />
+            <SubmitPage />
         </Suspense>
     );
 }
