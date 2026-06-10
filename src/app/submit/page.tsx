@@ -1,6 +1,5 @@
 "use client";
 
-import prisma from "@/lib/prisma";
 import { useSearchParams } from "next/navigation";
 import { useState, Suspense } from "react";
 
@@ -30,10 +29,7 @@ export function SubmitPage() {
   );
 }
 
-export default async function Page() {
-    const score = await prisma.score.findFirst({
-        orderBy: { score: "desc" },
-    });
+export default function Page() {
     return(
         <Suspense fallback={<div>Loading...</div>}>
             <SubmitPage />
