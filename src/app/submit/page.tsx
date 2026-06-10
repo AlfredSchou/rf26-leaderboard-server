@@ -1,10 +1,10 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState} from "react";
+import { useState, Suspense } from "react";
 
 
-export default function LeaderboardPage() {
+export function LeaderboardPage() {
   const params = useSearchParams();
   const score = params.get("score");
   const sig = params.get("sig");
@@ -27,4 +27,12 @@ export default function LeaderboardPage() {
         <button type="submit">Submit</button>
     </form>
   );
+}
+
+export default function Page() {
+    return(
+        <Suspense fallback={<div>Loading...</div>}>
+            <LeaderboardPage />
+        </Suspense>
+    );
 }
