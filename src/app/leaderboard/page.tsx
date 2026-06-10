@@ -14,7 +14,11 @@ export default function LeaderboardPage() {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    // submit logic goes here
+        await fetch("/api/scores", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ tag, score, signature: sig }),
+        });
   };
 
   return (
