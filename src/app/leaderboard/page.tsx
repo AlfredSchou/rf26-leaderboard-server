@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState} from "react";
 
 
 export default function LeaderboardPage() {
@@ -12,7 +12,7 @@ export default function LeaderboardPage() {
   // form state and submit handler go here
   const [tag, setTag] = useState("");
 
-  const handleSubmit = async (e: React.SubmitEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     // submit logic goes here
   };
