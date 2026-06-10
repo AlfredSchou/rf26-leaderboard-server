@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../lib/prisma";
+import { verifyScore } from "../../../lib/hmac";
+import { error } from "console";
 
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { tag, score } = body;
+    const { tag, score, signature } = body;
 
     const normalizedTag = typeof tag === "string" ? tag.trim() : "";
     const normalizedScore =
@@ -22,6 +24,10 @@ export async function POST(req: Request) {
       );
     }
 
+    if (!verifyScore(normalizedScore, signature)) {
+      return NextResponse.json({ error: "Invalid score signature." }, { status: 400 });
+    }
+
     const savedScore = await prisma.score.create({
       data: {
         tag: normalizedTag,
@@ -30,7 +36,8 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ ok: true, score: savedScore }, { status: 201 });
-  } catch {
+  } catch (error) {
+    console.error(error);
     return NextResponse.json({ error: "Failed to save score." }, { status: 500 });
   }
 }
