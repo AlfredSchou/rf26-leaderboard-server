@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useState, Suspense } from "react";
 
+export const dynamic = "force-dynamic";
 
 export function SubmitPage() {
   const params = useSearchParams();
