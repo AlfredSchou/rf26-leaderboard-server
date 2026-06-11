@@ -12,9 +12,9 @@ export default async function Page() {
   return <main className={`${pixelFont.className} flex flex-col items-center justify-center min-h-screen gap-8`}>
     <h1>HIGH SCORES</h1>
       <div className="flex justify-between gap-8 w-full max-w-md">
-        <th className="px-16">RANK</th>
-        <th className="px-16">TAG</th>
-        <th className="px-16">SCORE</th>
+        <span>RANK</span>
+        <span>TAG</span>
+        <span>SCORE</span>
       </div>    
     {scores.map((score, index) => (
       <tr key={score.id}>
