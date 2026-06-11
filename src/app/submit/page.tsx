@@ -37,6 +37,7 @@ export function SubmitPage() {
         <p>{score}</p>
         <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
             <input 
+                className="text-center"
                 placeholder="ENTER YOUR TAG"
                 maxLength={10}
                 type="text" 
