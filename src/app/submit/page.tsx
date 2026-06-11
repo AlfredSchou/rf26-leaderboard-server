@@ -32,10 +32,10 @@ export function SubmitPage() {
 
   return (
     <main className={`${pixelFont.className} flex flex-col items-center justify-center min-h-screen gap-8`}>
-        <h1 className="text-4xl">THE LAST CHECKPOINT</h1>
+        <h1 className="text-center text-lg">THE LAST CHECKPOINT</h1>
         <h1 className="text-1xl">SUBMIT YOUR SCORE</h1>
         <p>{score}</p>
-        <form onSubmit={handleSubmit}>
+        <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
             <input 
                 maxLength={10}
                 type="text" 
