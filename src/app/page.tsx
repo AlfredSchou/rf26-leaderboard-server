@@ -11,7 +11,7 @@ export default async function Page() {
 
   return <main className={`${pixelFont.className} flex flex-col items-center justify-center min-h-screen gap-8`}>
     <h1>HIGH SCORES</h1>
-    <table>
+    <table text-left>
       <thead>
         <tr>
           <th>RANK</th>
@@ -26,7 +26,7 @@ export default async function Page() {
             <td>{index + 1}</td>
             <td>{score.tag}</td>
             <td>{score.score}</td>
-            <td>{score.createdAt.toLocaleDateString()} {score.createdAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</td>
+            <td>{score.createdAt.toLocaleDateString([], { day: "2-digit", month: "2-digit", year: "2-digit" })} {score.createdAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</td>
           </tr>
         ))}
       </tbody>
