@@ -11,25 +11,19 @@ export default async function Page() {
 
   return <main className={`${pixelFont.className} flex flex-col items-center justify-center min-h-screen gap-8`}>
     <h1>HIGH SCORES</h1>
-    <table className="text-left">
-      <thead>
-        <tr>
-          <th className="px-16">RANK</th>
-          <th className="px-16">TAG</th>
-          <th className="px-16">SCORE</th>
-          <th className="px-16">DATE</th>
-        </tr>
-      </thead>
-      <tbody>
-        {scores.map((score, index) => (
-          <tr key={score.id}>
-            <td className="px-16">{index + 1}</td>
-            <td className="px-16">{score.tag}</td>
-            <td className="px-16">{score.score}</td>
-            <td className="px-16">{score.createdAt.toLocaleDateString([], { day: "2-digit", month: "2-digit", year: "2-digit" })} {score.createdAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+      <div className="flex justify-between gap-8 w-full max-w-md">
+        <th className="px-16">RANK</th>
+        <th className="px-16">TAG</th>
+        <th className="px-16">SCORE</th>
+      </div>    
+    {scores.map((score, index) => (
+      <tr key={score.id}>
+        <div className="flex justify-between gap-8 w-full max-w-md">
+          <span>{index + 1}</span>
+          <span>{score.tag.slice(0, 12)}</span>
+          <span>{score.score}</span>
+        </div>
+      </tr>
+    ))}
   </main>
 }
