@@ -12,18 +12,16 @@ export default async function Page() {
   return <main className={`${pixelFont.className} flex flex-col items-center justify-center min-h-screen gap-8`}>
     <h1>HIGH SCORES</h1>
       <div className="flex justify-between gap-8 w-full max-w-md">
-        <span>RANK</span>
-        <span>TAG</span>
-        <span>SCORE</span>
+        <span className="w-12">RANK</span>
+        <span className="w-40">TAG</span>
+        <span className="w-20">SCORE</span>
       </div>    
     {scores.map((score, index) => (
-      <tr key={score.id}>
-        <div className="flex justify-between gap-8 w-full max-w-md">
-          <span>{index + 1}</span>
-          <span>{score.tag.slice(0, 12)}</span>
-          <span>{score.score}</span>
-        </div>
-      </tr>
+      <div key={score.id} className="flex justify-between gap-8 w-full max-w-md">
+        <span className="w-12">{index + 1}</span>
+        <span className="w-40">{score.tag.slice(0, 12)}</span>
+        <span className="w-20">{score.score}</span>
+      </div>
     ))}
   </main>
 }
