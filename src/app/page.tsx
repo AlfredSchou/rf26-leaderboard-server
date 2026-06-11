@@ -11,7 +11,7 @@ export default async function Page() {
 
   return <main className={`${pixelFont.className} flex flex-col items-center justify-center min-h-screen gap-8`}>
     <h1>HIGH SCORES</h1>
-    <table text-left>
+    <table className="text-left">
       <thead>
         <tr>
           <th>RANK</th>
