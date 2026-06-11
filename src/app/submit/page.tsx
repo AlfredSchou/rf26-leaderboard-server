@@ -14,11 +14,14 @@ export function SubmitPage() {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-        await fetch("/api/scores", {
+        
+        const response = await fetch("/api/scores", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ tag, score, signature: sig }),
         });
+        const data = await response.json();
+        console.log(data);
   };
 
   return (
