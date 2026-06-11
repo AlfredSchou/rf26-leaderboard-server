@@ -14,19 +14,19 @@ export default async function Page() {
     <table className="text-left">
       <thead>
         <tr>
-          <th>RANK</th>
-          <th>TAG</th>
-          <th>SCORE</th>
-          <th>DATE</th>
+          <th className="px-16">RANK</th>
+          <th className="px-16">TAG</th>
+          <th className="px-16">SCORE</th>
+          <th className="px-16">DATE</th>
         </tr>
       </thead>
       <tbody>
         {scores.map((score, index) => (
           <tr key={score.id}>
-            <td>{index + 1}</td>
-            <td>{score.tag}</td>
-            <td>{score.score}</td>
-            <td>{score.createdAt.toLocaleDateString([], { day: "2-digit", month: "2-digit", year: "2-digit" })} {score.createdAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</td>
+            <td className="px-16">{index + 1}</td>
+            <td className="px-16">{score.tag}</td>
+            <td className="px-16">{score.score}</td>
+            <td className="px-16">{score.createdAt.toLocaleDateString([], { day: "2-digit", month: "2-digit", year: "2-digit" })} {score.createdAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</td>
           </tr>
         ))}
       </tbody>
