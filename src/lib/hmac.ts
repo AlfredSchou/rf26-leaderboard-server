@@ -7,9 +7,9 @@ export function signScore(score: number): string {
     return hmac.digest('hex');
 }
 
-export function verifyScore(score: number, signature: string): boolean {
+export function verifyScore(score: number, signature: string, nonce: string): boolean {
     const hmac = createHmac('sha256', secret);
-    hmac.update(score.toString());
+    hmac.update(`${score}:${nonce}`);
     const expectedSignature = hmac.digest('hex');
     return expectedSignature === signature;
 }
