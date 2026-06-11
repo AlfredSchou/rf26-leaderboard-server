@@ -6,6 +6,8 @@ import { useState, Suspense } from "react";
 import { Press_Start_2P } from "next/font/google";
 const pixelFont = Press_Start_2P({ weight: "400", subsets: ["latin"] });
 
+import { containsProfanity } from "@/lib/profanity";
+
 export function SubmitPage() {
   const params = useSearchParams();
   const router = useRouter();
@@ -17,7 +19,12 @@ export function SubmitPage() {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-        
+    
+        if (containsProfanity(tag)) {
+            alert("Please enter a valid tag without profanity.");
+            return;
+        }
+
         const response = await fetch("/api/scores", {
             method: "POST",
             headers: { "Content-Type": "application/json" },

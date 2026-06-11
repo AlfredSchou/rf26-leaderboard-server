@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../lib/prisma";
 import { verifyScore } from "../../../lib/hmac";
-import { error } from "console";
-
+import { containsProfanity } from "@/lib/profanity";
 
 export async function POST(req: Request) {
   try {
@@ -24,6 +23,13 @@ export async function POST(req: Request) {
       );
     }
 
+    if (containsProfanity(normalizedTag)) {
+      return NextResponse.json(
+        { error: "Tag contains profanity." },
+        { status: 400 }
+      );
+    }
+    
     if (!verifyScore(normalizedScore, signature, nonce)) {
       return NextResponse.json({ error: "Invalid score signature." }, { status: 400 });
     }
