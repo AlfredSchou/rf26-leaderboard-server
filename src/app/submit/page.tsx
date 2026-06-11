@@ -1,10 +1,11 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useState, Suspense } from "react";
 
 export function SubmitPage() {
   const params = useSearchParams();
+  const router = useRouter();
   const score = params.get("score");
   const sig = params.get("sig");
 
@@ -21,6 +22,9 @@ export function SubmitPage() {
         });
         const data = await response.json();
         console.log(data);
+        if (response.ok) {
+            router.push("/");
+        }
   };
 
   return (
