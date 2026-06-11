@@ -17,7 +17,7 @@ export function SubmitPage() {
         const response = await fetch("/api/scores", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ tag, score, signature: sig }),
+            body: JSON.stringify({ tag, score, signature: sig, nonce: params.get("nonce") }),
         });
         const data = await response.json();
         console.log(data);

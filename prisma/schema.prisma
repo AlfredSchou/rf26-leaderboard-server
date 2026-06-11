@@ -18,3 +18,7 @@ model Score {
   score     Int
   createdAt DateTime @default(now())
 }
+
+model Nonce{
+  nonce     String    @id 
+}

@@ -7,7 +7,7 @@ import { error } from "console";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { tag, score, signature } = body;
+    const { tag, score, signature, nonce } = body;
 
     const normalizedTag = typeof tag === "string" ? tag.trim() : "";
     const normalizedScore =
@@ -24,8 +24,12 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!verifyScore(normalizedScore, signature)) {
+    if (!verifyScore(normalizedScore, signature, nonce)) {
       return NextResponse.json({ error: "Invalid score signature." }, { status: 400 });
+    }
+
+    if (await prisma.nonce.findUnique({ where: { nonce } })) {
+      return NextResponse.json({ error: "Nonce has already been used." }, { status: 400 });
     }
 
     const savedScore = await prisma.score.create({
@@ -34,6 +38,8 @@ export async function POST(req: Request) {
         score: normalizedScore,
       },
     });
+
+    await prisma.nonce.create({ data: { nonce } });
 
     return NextResponse.json({ ok: true, score: savedScore }, { status: 201 });
   } catch (error) {
