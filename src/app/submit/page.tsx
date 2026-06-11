@@ -3,6 +3,9 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, Suspense } from "react";
 
+import { Press_Start_2P } from "next/font/google";
+const pixelFont = Press_Start_2P({ weight: "400", subsets: ["latin"] });
+
 export function SubmitPage() {
   const params = useSearchParams();
   const router = useRouter();
@@ -28,10 +31,20 @@ export function SubmitPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-        <input type="text" value={tag} onChange={(e) => setTag(e.target.value)} />
-        <button type="submit">Submit</button>
-    </form>
+    <main className={`${pixelFont.className} flex flex-col items-center justify-center min-h-screen gap-8`}>
+        <h1 className="text-4xl">THE LAST CHECKPOINT</h1>
+        <h1 className="text-1xl">SUBMIT YOUR SCORE</h1>
+        <p>{score}</p>
+        <form onSubmit={handleSubmit}>
+            <input 
+                maxLength={10}
+                type="text" 
+                value={tag} 
+                onChange={(e) => setTag(e.target.value)} 
+            />
+            <button type="submit">SUBMIT</button>
+        </form>
+    </main>
   );
 }
 
