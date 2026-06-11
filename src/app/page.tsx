@@ -11,7 +11,7 @@ export default async function Page() {
 
   return <main className={`${pixelFont.className} flex flex-col items-center justify-center min-h-screen gap-8`}>
     <h1 className="text-4xl">THE LAST CHECKPOINT</h1>
-    <h1>HIGH SCORES</h1>
+    <h1 className="text-1xl">HIGH SCORES</h1>
       <div className="flex justify-between gap-8 w-full max-w-md">
         <span className="w-12">RANK</span>
         <span className="w-50">TAG</span>
