@@ -3,6 +3,8 @@ import {NextResponse} from "next/server";
 import prisma from "@/lib/prisma";
 
 export async function DELETE(req: Request, {params}: {params: {id: string}}) {
+    const {id: rawId} = await params;
+    const id = Number(rawId);
     const cookieStore = await cookies();
     const adminSession = cookieStore.get("admin_session")?.value;
     
@@ -10,7 +12,6 @@ export async function DELETE(req: Request, {params}: {params: {id: string}}) {
         return NextResponse.json({error: "Unauthorized"}, {status: 401});
     }
 
-    const id = Number(params.id);
     if (isNaN(id)) {
         return NextResponse.json({error: "Invalid ID"}, {status: 400});
     }
