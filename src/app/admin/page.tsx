@@ -22,6 +22,7 @@ export default function AdminLogin() {
             setError("Invalid password");
         }
     }
+    
     return (
         <main className="flex flex-col items-center justify-center min-h-screen gap-8">
             <h1 className="text-center text-lg">ADMIN LOGIN</h1>
@@ -37,6 +38,5 @@ export default function AdminLogin() {
             </form>
             {error && <p className="text-red-500">{error}</p>}
         </main>
-
     );
 }
